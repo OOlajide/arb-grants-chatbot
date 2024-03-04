@@ -3,6 +3,18 @@ import pandas as pd
 from pandasai import SmartDataframe
 from pandasai.llm import OpenAI
 
+st.set_page_config(
+    page_title="Arbitrum Grants Chatbot",
+    page_icon=None,
+    layout="wide",
+    initial_sidebar_state="auto",
+    menu_items={
+        "Get Help": None,
+        "Report a bug": "https://twitter.com/sageOlamide",
+        "About": None
+    }
+)
+
 st.title("Arbitrum Grants Chatbot")
 
 with st.expander("About"):
