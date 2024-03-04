@@ -27,7 +27,7 @@ llm = OpenAI(api_token=st.secrets.api_key)
 df = SmartDataframe(dataset, config={"llm": llm})
 
 with st.form("Question"):
-  question = st.text_input("Question", value="", type="default")
+  question = st.text_input("Question", value="What grantee has received the highest amount, and how much did they receive?", type="default")
   submitted = st.form_submit_button("Submit")
   if submitted:
     with st.spinner("Thinking..."):
