@@ -3,10 +3,10 @@ import pandas as pd
 from pandasai import SmartDataframe
 from pandasai.llm import OpenAI
 
-st.title("Arbitrum Grants Chat")
+st.title("Arbitrum Grants Chatbot")
 
 with st.expander("About"):
-    st.write("about")
+    st.write("Chat with a dataset of all Arbitrum grants as seen on [Karma](https://gap.karmahq.xyz/arbitrum).")
 
 # load dataset
 dataset = pd.read_csv("grants_dataset.csv")
