@@ -26,3 +26,9 @@ with st.form("Question"):
 with st.expander("View dataset"):
   st.dataframe(dataset)
       
+st.download_button(
+    label="Download dataset as CSV",
+    data=df.to_csv().encode('utf-8'),
+    file_name='grants_dataset.csv',
+    mime='text/csv',
+)
