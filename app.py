@@ -29,6 +29,6 @@ with st.expander("View dataset"):
 st.download_button(
     label="Download dataset as CSV",
     data=dataset.to_csv().encode('utf-8'),
-    file_name='grants_dataset.csv',
+    file_name='arbitrum_grantees.csv',
     mime='text/csv',
 )
