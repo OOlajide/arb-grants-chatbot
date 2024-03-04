@@ -18,7 +18,7 @@ st.set_page_config(
 st.title("Arbitrum Grants Chatbot")
 
 with st.expander("About"):
-    st.write("Chat with a dataset of Arbitrum grants, scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
+    st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
     
 # load dataset
 dataset = pd.read_csv("arbitrum_grantees.csv")
