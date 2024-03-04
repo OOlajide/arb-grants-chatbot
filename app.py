@@ -8,7 +8,7 @@ st.title("Arbitrum Grants Chatbot")
 with st.expander("About"):
     st.write("Chat with a dataset of all Arbitrum grants as seen on [Karma](https://gap.karmahq.xyz/arbitrum).")
     if st.button('View Source'):
-    webbrowser.open_new_tab("https://github.com/OOlajide/arb-grants-chatbot/tree/main)")
+        webbrowser.open_new_tab("https://github.com/OOlajide/arb-grants-chatbot/tree/main)")
 
 # load dataset
 dataset = pd.read_csv("grants_dataset.csv")
