@@ -19,6 +19,7 @@ st.title("Arbitrum Grants Chatbot")
 
 with st.expander("About"):
     st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
+    st.write("TIP: if you don't get an answer, rewrite your question with one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`")
     
 # load dataset
 dataset = pd.read_csv("arbitrum_grantees.csv")
@@ -27,7 +28,7 @@ llm = OpenAI(api_token=st.secrets.api_key)
 df = SmartDataframe(dataset, config={"llm": llm})
 
 with st.form("Question"):
-  question = st.text_input("Question", value="What grantee has received the highest amount, and how much did they receive?", type="default")
+  question = st.text_input("Question", value="What are the top 5 grantees by amount received, and how much did they receive?", type="default")
   submitted = st.form_submit_button("Submit")
   if submitted:
     with st.spinner("Thinking..."):
