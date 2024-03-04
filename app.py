@@ -9,7 +9,7 @@ with st.expander("About"):
     st.write("Chat with a dataset of all Arbitrum grants as seen on [Karma](https://gap.karmahq.xyz/arbitrum).")
     
 # load dataset
-dataset = pd.read_csv("grants_dataset.csv")
+dataset = pd.read_csv("arbitrum_grantees.csv")
 # Instantiate a LLM
 llm = OpenAI(api_token=st.secrets.api_key)
 df = SmartDataframe(dataset, config={"llm": llm})
