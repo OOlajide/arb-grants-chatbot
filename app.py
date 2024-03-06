@@ -36,7 +36,7 @@ with st.form("Question"):
       if response is not None:
 #        if type(response) == foo:
 #          response = response.replace('$', '')
-        st.write(type(response))
+        print(type(response))
         st.write(response)
         
 with st.expander("View dataset"):
