@@ -34,9 +34,8 @@ with st.form("Question"):
     with st.spinner("Thinking..."):
       response = df.chat(question)
       if response is not None:
-#        if type(response) == foo:
-#          response = response.replace('$', '')
-        print(type(response))
+        if isinstance(response, str):
+          response = response.replace('$', '')
         st.write(response)
         
 with st.expander("View dataset"):
