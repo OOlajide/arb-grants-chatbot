@@ -20,6 +20,7 @@ st.title("Arbitrum Grants Chatbot")
 with st.expander("About"):
     st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
     st.write("TIP: if you don't get an answer, rewrite your question with one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`")
+    st.info('All amounts are denominated in ARB', icon="ℹ️")
     
 # load dataset
 dataset = pd.read_csv("arbitrum_grantees.csv")
