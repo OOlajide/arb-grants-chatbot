@@ -36,6 +36,8 @@ with st.form("Question"):
       if response is not None:
         if isinstance(response, str):
           response = response.replace('$', '')
+          if response.endswith('.'):
+            response = response[:-1]
         st.write(response)
         
 with st.expander("View dataset"):
