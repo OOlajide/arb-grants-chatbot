@@ -1,5 +1,5 @@
 import streamlit as st
-# import pandas as pd
+import pandas as pd
 from pandasai import SmartDataframe
 from pandasai.llm import OpenAI
 
