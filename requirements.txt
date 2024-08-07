@@ -1,4 +1,4 @@
-pandasai==2.0.2
+pandasai
 pandas
 pyyaml
 polars
