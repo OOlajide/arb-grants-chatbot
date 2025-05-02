@@ -21,7 +21,7 @@ st.title("Arbitrum Grants Chatbot")
 with st.expander("About"):
   st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
   st.write("TIP: if you are having trouble getting the information you need, try refining your question using one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`.")
-  st.write("TIP: In addition to asking questions, you can request visualizations — for example, 'Plot a bar chart of the top 10 grantees by amount received.'")
+  st.write("TIP: In addition to asking questions, you can request visualizations — for example, 'Plot a bar chart of the top 10 grantees by amount received'.")
   st.write("All amounts are denominated in ARB.")
 
 pai.api_key.set(st.secrets.pai_api_key)
