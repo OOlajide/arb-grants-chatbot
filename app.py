@@ -23,7 +23,7 @@ with st.expander("About"):
   st.write("TIP: if you are having trouble getting the information you need, try refining your question using one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`.")
   st.write("All amounts are denominated in ARB.")
 
-pai.api_key.set("st.secrets.pai_api_key")
+pai.api_key.set(st.secrets.pai_api_key)
 df = pai.read_csv("arbitrum_grantees.csv")
 
 with st.form("Question"):
