@@ -1,51 +1,57 @@
 import streamlit as st
+import pandasai as pai
 import pandas as pd
-from pandasai import SmartDataframe
-from pandasai.llm import OpenAI
+import matplotlib.pyplot as plt
+import os
 
 st.set_page_config(
-    page_title="Arbitrum Grants Chatbot",
-    page_icon=None,
-    layout="wide",
-    initial_sidebar_state="auto",
-    menu_items={
-        "Get Help": None,
-        "Report a bug": "https://twitter.com/sageOlamide",
-        "About": None
-    }
+  page_title="Arbitrum Grants Chatbot",
+  page_icon=None,
+  layout="wide",
+  initial_sidebar_state="auto",
+  menu_items={
+      "Get Help": None,
+      "Report a bug": "https://twitter.com/sageOlamide",
+      "About": None
+  }
 )
 
 st.title("Arbitrum Grants Chatbot")
 
 with st.expander("About"):
-    st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
-    st.write("TIP: if you are having trouble getting the information you need, try refining your question using one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`.")
-    st.write("All amounts are denominated in ARB.")
-# load dataset
-dataset = pd.read_csv("arbitrum_grantees.csv")
-# Instantiate a LLM
-llm = OpenAI(api_token=st.secrets.api_key)
-df = SmartDataframe(dataset, config={"llm": llm})
+  st.write("Chat with a dataset of Arbitrum grants scraped from [Karma GAP](https://gap.karmahq.xyz/arbitrum).")
+  st.write("TIP: if you are having trouble getting the information you need, try refining your question using one or more of the dataset column names: `grantee`, `grant_date`, `grant_amount_arb`, `grant_name`, `proposal_url`, `gap_url`.")
+  st.write("All amounts are denominated in ARB.")
+
+pai.api_key.set("st.secrets.pai_api_key")
+df = pai.read_csv("arbitrum_grantees.csv")
 
 with st.form("Question"):
   question = st.text_area("Question", value="What are the top 5 grantees by amount received, and how much did they receive?")
   submitted = st.form_submit_button("Submit")
   if submitted:
     with st.spinner("Thinking..."):
-      response = df.chat(question)
-      if response is not None:
-        if isinstance(response, str):
-          response = response.replace('$', '')
-          if response.endswith('.'):
-            response = response[:-1]
-        st.write(response)
-        
+      try:
+        response = df.chat(question)
+      except Exception as e:
+        st.error(f"Error: {e}. Refine your question and try again.")
+        response = None
+      image_dir = os.path.join("exports", "charts")
+      png_files = [f for f in os.listdir(image_dir) if f.endswith('.png')]
+      if png_files:
+        image_path = os.path.join(image_dir, png_files[0])
+        im = plt.imread(image_path)
+        st.image(im, width=800)
+        os.remove(image_path)
+      elif response is not None:
+          st.write(response)
+
 with st.expander("View dataset"):
-  st.dataframe(dataset)
-      
+  st.dataframe(df)
+
 st.download_button(
-    label="Download dataset as CSV",
-    data=dataset.to_csv().encode('utf-8'),
-    file_name='arbitrum_grantees.csv',
-    mime='text/csv',
+  label="Download dataset as CSV",
+  data=df.to_csv().encode('utf-8'),
+  file_name='arbitrum_grantees.csv',
+  mime='text/csv',
 )
